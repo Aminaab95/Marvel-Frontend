@@ -8,18 +8,21 @@ export default function CharacterDetail() {
   const [comics, setComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  /*const localURL = "http://localhost:3000";*/
+  const productionURL = "https://site--marvel-backend--m5j6f6hlb96f.code.run";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch character details
         const characterResponse = await axios.get(
-          `http://localhost:3000/character/${characterId}`
+          `${productionURL}/character/${characterId}`
         );
         setCharacter(characterResponse.data);
 
         // Fetch comics associated with the character
         const comicsResponse = await axios.get(
-          `http://localhost:3000/comics/${characterId}`
+          `${productionURL}/comics/${characterId}`
         );
         setComics(comicsResponse.data.results);
 

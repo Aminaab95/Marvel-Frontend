@@ -5,6 +5,9 @@ export default function Comics() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  /*const localURL = "http://localhost:3000";*/
+  const productionURL = "https://site--marvel-backend--m5j6f6hlb96f.code.run";
+
   const handleFavorite = (comic) => {
     let favorites = JSON.parse(localStorage.getItem("favoritesComics")) || [];
     if (favorites.some((fav) => fav._id === comic._id)) {
@@ -28,7 +31,7 @@ export default function Comics() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/comics");
+        const response = await axios.get(`${productionURL}/comics`);
         setData(response.data.results);
         setIsLoading(false);
       } catch (error) {

@@ -6,6 +6,9 @@ export default function Characters() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  /*const localURL = "http://localhost:3000";*/
+  const productionURL = "https://site--marvel-backend--m5j6f6hlb96f.code.run";
+
   const handleFavorite = (character) => {
     let favorites =
       JSON.parse(localStorage.getItem("favoritesCharacters")) || [];
@@ -31,7 +34,7 @@ export default function Characters() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/characters");
+        const response = await axios.get(`${productionURL}/characters`);
         setData(response.data.results);
         setIsLoading(false);
       } catch (error) {
